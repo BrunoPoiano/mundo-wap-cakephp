@@ -72,9 +72,16 @@ class WorkdaysController extends Controller
             ->all();
 
         // Calculate next day date
+        $newDateCompare = new FrozenDate($requestData["date"]);
         $newDate = (new FrozenDate($requestData["date"]))
             ->addDays(1)
             ->format("Y-m-d");
+
+        // Verify if date is before today
+        $today = new FrozenDate(date("Y-m-d"));
+        if ($newDateCompare->lessThanOrEquals($today)) {
+            $newDate = (new FrozenDate($today))->addDays(1)->format("Y-m-d");
+        }
 
         // Reschedule all incomplete visits to next day
         foreach ($visits as $visit) {
