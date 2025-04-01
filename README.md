@@ -73,3 +73,88 @@ If your implementation does not use CSRF authentication, you should remove the `
 Set the `XDEBUG_SESSION` key at the request cookies.
 
 At your IDE, point the `app` project directory to the `/var/www/html` absolute path on server.
+
+
+## API
+
+### Visit Endpoints
+
+#### Create a Visit
+```http
+POST /api/visits
+```
+
+| Parameter               | Type     | Description                      |
+| :---------------------- | :------- | :------------------------------- |
+| `date`                  | `string` | **Required**. Format: YYYY-MM-DD |
+| `forms`                 | `number` | **Required**                     |
+| `products`              | `number` | **Required**                     |
+| `address_postal_code`   | `string` | **Required**                     |
+| `address_street_number` | `string` | **Required**                     |
+| `address_complement`    | `string` | Optional                         |
+
+#### Update a Visit
+```http
+PUT /api/visits/{visit_id}
+```
+
+| Parameter               | Type     | Description                      |
+| :---------------------- | :------- | :------------------------------- |
+| `date`                  | `string` | **Required**. Format: YYYY-MM-DD |
+| `forms`                 | `number` | **Required**                     |
+| `products`              | `number` | **Required**                     |
+| `address_postal_code`   | `string` | **Required**                     |
+| `address_street_number` | `string` | **Required**                     |
+| `address_complement`    | `string` | Optional                         |
+
+#### Patch a Visit
+```http
+PATCH /api/visits/{visit_id}
+```
+
+| Parameter   | Type     | Description  |
+| :---------- | :------- | :----------- |
+| `completed` | `number` | **Required** |
+
+#### List Visits
+```http
+GET /api/visits
+```
+
+| Parameter | Type     | Description                     |
+| :-------- | :------- | :------------------------------ |
+| `date`    | `string` | Optional Format: YYYY-MM-DD     |
+
+#### List Visits in a Particular Date
+```http
+GET /api/visits/date
+```
+
+| Parameter | Type     | Description                     |
+| :-------- | :------- | :------------------------------ |
+| `date`    | `string` | Optional Format: YYYY-MM-DD     |
+
+#### Delete a Visit
+```http
+DELETE /api/visits/{visit_id}
+```
+
+### Workday Endpoints
+
+#### List Workdays
+```http
+GET /api/workdays
+```
+
+| Parameter | Type     | Description                     |
+| :-------- | :------- | :------------------------------ |
+| `date`    | `string` | Optional Format: YYYY-MM-DD     |
+
+#### Close a Workday
+```http
+POST /api/workdays/close
+```
+
+| Parameter | Type     | Description                 |
+| :-------- | :------- | :-------------------------- |
+| `date`    | `string` | Format: YYYY-MM-DD          |
