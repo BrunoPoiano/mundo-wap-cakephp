@@ -4,11 +4,7 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\I18n\FrozenDate;
-use Cake\I18n\FrozenTime;
-use Cake\I18n\Time;
-use Cake\Log\Log;
 use Cake\Validation\Validator;
-use Cake\ORM\TableRegistry;
 
 class VisitComponent extends Component
 {

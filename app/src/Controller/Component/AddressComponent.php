@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\Log\Log;
 use Cake\Validation\Validator;
 use Cake\ORM\TableRegistry;
 

@@ -3,15 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Table\VisitsTable;
 use Cake\Controller\Controller;
-use Cake\Http\Client;
-use Cake\Validation\Validator;
-use Cake\Http\Response;
 use Cake\I18n\FrozenDate;
-use Cake\I18n\Time;
-use Cake\Log\Log;
-use DateTime;
 
 class WorkdaysController extends Controller
 {

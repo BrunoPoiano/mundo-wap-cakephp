@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use Cake\Http\Client;
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -108,14 +106,6 @@ class AddressesTable extends Table
 
     public function getPostalCodeData($postalCode)
     {
-        return [
-            "postal_code" => "14840334",
-            "city" => "Guariba",
-            "state" => "SP",
-            "sublocality" => "Vila Rocca",
-            "street" => "Avenida Antonio Mazzi",
-        ];
-
         // Try to get postal code data from Republica Virtual
         $postalCodeData = $this->getPostalCodeRepublicaVirtual($postalCode);
 

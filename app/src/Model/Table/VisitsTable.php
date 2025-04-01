@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -37,9 +35,9 @@ class VisitsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('visits');
-        $this->setDisplayField('id');
-        $this->setPrimaryKey('id');
+        $this->setTable("visits");
+        $this->setDisplayField("id");
+        $this->setPrimaryKey("id");
     }
 
     /**
@@ -51,27 +49,23 @@ class VisitsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->date('date')
-            ->requirePresence('date', 'create')
-            ->notEmptyDate('date');
+            ->date("date")
+            ->requirePresence("date", "create")
+            ->notEmptyDate("date");
+
+        $validator->integer("completed")->notEmptyString("completed");
 
         $validator
-            ->integer('completed')
-            ->notEmptyString('completed');
+            ->integer("forms")
+            ->requirePresence("forms", "create")
+            ->notEmptyString("forms");
 
         $validator
-            ->integer('forms')
-            ->requirePresence('forms', 'create')
-            ->notEmptyString('forms');
+            ->integer("products")
+            ->requirePresence("products", "create")
+            ->notEmptyString("products");
 
-        $validator
-            ->integer('products')
-            ->requirePresence('products', 'create')
-            ->notEmptyString('products');
-
-        $validator
-            ->integer('duration')
-            ->notEmptyString('duration');
+        $validator->integer("duration")->notEmptyString("duration");
 
         return $validator;
     }

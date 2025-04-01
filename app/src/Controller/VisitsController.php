@@ -3,13 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Table\VisitsTable;
 use Cake\Controller\Controller;
-use Cake\Http\Client;
-use Cake\Validation\Validator;
-use Cake\Http\Response;
-use Cake\Log\Log;
-use DateTime;
+use Cake\I18n\FrozenDate;
 
 class VisitsController extends Controller
 {
@@ -67,15 +62,19 @@ class VisitsController extends Controller
     // Get visit by date
     public function date()
     {
-        $date = $this->request->getQuery(
-            "date",
-            DateTime::createFromFormat("Y-m-d", "2023-01-01")
-        );
+        $date = $this->request->getQuery("date", date("Y-m-d"));
+
+        if (!FrozenDate::parseDate($date, "yyyy-MM-dd")) {
+            return $this->response
+                ->withStatus(400)
+                ->withStringBody(json_encode(["error" => "Invalid date"]))
+                ->withType("application/json");
+        }
 
         $visits = $this->Visits
             ->find()
             ->where(["date" => $date])
-            ->first();
+            ->all();
 
         return $this->response
             ->withStringBody(json_encode($visits))

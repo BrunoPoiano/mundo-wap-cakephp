@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Table\AddressesTable;
 use Cake\Controller\Controller;
-use Cake\Http\Client;
-use Cake\Validation\Validator;
 
 class AddressController extends Controller
 {
